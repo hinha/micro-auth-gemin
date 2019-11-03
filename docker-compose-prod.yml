@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  server_api_01:
+    image:  api:1.1
+    tty: true
+    restart: always
+    environment:
+      - APP_HOST=0.0.0.0
+      - APP_DEBUG=False
+      - APP_WORKERS=2
+      - APP_CONFIG_PATH=./config.py
+      - AMQP_HOST=amqp.hinha.me
+      - AMQP_USERNAME=wapick-gemin
+      - AMQP_PASSWORD=wapick-staging123
+      - AMQP_PORT=5672
+      - REDIS_HOST=api-data.qzimeh.ng.0001.use1.cache.amazonaws.com
+      - REDIS_PORT=6379
+      - DB_HOST=services02.cg03adtwzxjo.us-east-1.rds.amazonaws.com
+      - DB_DATABASE=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=Qwapickdata123
+    volumes:
+      - ".:/app"
+    ports:
+      - "5001:8000"
+  
+  server_api_02:
+    image:  api:1.1
+    tty: true
+    restart: always
+    environment:
+      - APP_HOST=0.0.0.0
+      - APP_DEBUG=False
+      - APP_WORKERS=2
+      - APP_CONFIG_PATH=./config.py
+      - AMQP_HOST=amqp.hinha.me
+      - AMQP_USERNAME=wapick-gemin
+      - AMQP_PASSWORD=wapick-staging123
+      - AMQP_PORT=5672
+      - REDIS_HOST=api-data.qzimeh.ng.0001.use1.cache.amazonaws.com
+      - REDIS_PORT=6379
+      - DB_HOST=services02.cg03adtwzxjo.us-east-1.rds.amazonaws.com
+      - DB_DATABASE=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=Qwapickdata123
+    volumes:
+      - ".:/app"
+    ports:
+      - "5002:8000"

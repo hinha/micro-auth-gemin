@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "/home/hinhaoge/anaconda3/envs/micro_auth_gemin/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": false,
+    "python.linting.enabled": true
+}
