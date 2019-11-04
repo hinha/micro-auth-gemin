@@ -4,11 +4,12 @@ from sanic.response import json
 from gino.ext.sanic import Gino
 from sanic import Blueprint
 from sanic_cors import CORS
-
+from app.utils.middleware import setup_middleware
 
 app = Sanic(__name__)
 # app.config['CORS_AUTOMATIC_OPTIONS'] = True
 # CORS(app)
+setup_middleware(app)
 app.config.from_envvar('APP_CONFIG_PATH')
 
 # Extensions
@@ -92,3 +93,4 @@ app.blueprint(blueprint_v1)
 #             ssl=self.app.config["APP_SSL"],
 #             workers=self.app.config["APP_WORKERS"],
 #         )
+
