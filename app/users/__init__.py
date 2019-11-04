@@ -2,12 +2,18 @@ import asyncio, random
 from sanic.response import text, json
 from sanic import Blueprint
 
-from .models import UserRegisterAccount
+from .models import UserRegisterAccount, UserLoginAccount
 
 from app.models.users import Individuals
 from app.utils import response_json
 
 blueprint_v1 = Blueprint('v1', url_prefix='/api', version="v1")
+
+@blueprint_v1.middleware('request')
+async def before_request(request):
+    rqheaders = request.headers
+
+    print(rqheaders)
 
 
 @blueprint_v1.route('/')
@@ -50,3 +56,15 @@ async def auth_view_signup(request):
         return json(response_json.JSON_409_2, 409)
     
     return json({'s': 123})
+
+@blueprint_v1.route('/auth/signin', methods=['POST'])
+async def auth_view_signin(request):
+    request_params = request.raw_args
+    request_forms = request.form
+    rqheaders = request.headers
+
+    print(rqheaders)
+    
+
+    raw_data = await UserLoginAccount(request_forms.get('email'), request_forms.get('password'))
+    return json(raw_data)

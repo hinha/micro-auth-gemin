@@ -6,6 +6,7 @@ from sqlalchemy import String, Date, Text, DateTime, Boolean, BigInteger
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
+from app.utils.security_password import verify_password
 
 class Individuals(db.Model):
     __tablename__ = 'individuals'
@@ -32,6 +33,9 @@ class UserAccount(db.Model):
     password = Column(String(120), nullable=False)
     individual_id = Column(String(25), ForeignKey('individuals.individual_id'))
     roleid = relationship('user_roles', backref='user_accounts')
+
+    def verify_password(self, password):
+        return self.password and verify_password(password, self.password)
 
     def __repr__(self):
         return '{}'.format(self.user_account_id)
