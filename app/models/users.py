@@ -2,7 +2,7 @@ import uuid
 from sanic.response import text
 from sanic import Blueprint
 from app import db
-from sqlalchemy import String, Date, Text, DateTime, Boolean, BigInteger
+from sqlalchemy import String, Date, Text, DateTime, Boolean, BigInteger, Integer
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -71,3 +71,23 @@ class UserRoles(db.Model):
 
     role_id = Column(String(7), ForeignKey('roles.role_id'))
     user_account_id = Column(String(25), ForeignKey('user_accounts.user_account_id'))
+
+
+class InetProtocol(db.Model):
+    __tablename__ = 'internet_protocol'
+
+    address_id = Column(String(5), primary_key=True, default=str(uuid.uuid4().int)[:5])
+    ip_address = Column(String(15), nullable=False)
+    country = Column(String(25), nullable=False)
+    latitude = Column(Text(), nullable=False)
+    longitude = Column(Text(), nullable=False)
+    city = Column(String(25), nullable=False)
+
+class UserLogin(db.Model):
+    __tablename__ = 'user_login'
+    
+    last_login = Column(DateTime, default=datetime.now)
+    device_name = Column(Text(), nullable=False)
+    imei_device = Column(Text(), nullable=False)
+    user_account_id = Column(String(25), ForeignKey('user_accounts.user_account_id'))
+    address_id = Column(String(5), ForeignKey('internet_protocol.address_id'))

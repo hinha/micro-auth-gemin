@@ -29,10 +29,13 @@ else:
 # DB_USER = os.environ.get("DB_USER", "hinhalocal")
 # DB_PASSWORD = os.environ.get("DB_PASSWORD", "alongside")
 DB_POOL_MIN_SIZE = to_int(os.environ.get('DB_POOL_MIN_SIZE', 5))
-DB_POOL_MAX_SIZE = to_int(os.environ.get('DB_POOL_MAX_SIZE', 10))
+DB_POOL_MAX_SIZE = to_int(os.environ.get('DB_POOL_MAX_SIZE', 15))
 
 DB_HOST = os.environ.get("DB_HOST", "services02.cg03adtwzxjo.us-east-1.rds.amazonaws.com")
 DB_PORT = os.environ.get("DB_PORT", 5432)
 DB_NAME = os.environ.get("DB_DATABASE", "postgres")
 DB_USER = os.environ.get("DB_USER", "postgres")
 DB_PASSWORD = os.environ.get("DB_PASSWORD", "Qwapickdata123")
+
+
+AUTHY_API_KEY = 'h9V1ScDqpeD3hj4wfX7ZPVctDCKZDg96'

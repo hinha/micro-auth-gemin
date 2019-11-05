@@ -5,3 +5,6 @@ passlib==1.7.1
 bcrypt==3.1.7
 Sanic-Cors==0.9.9.post3
 secure==0.2.1
+
+geoip2==2.9.0
+authy==2.2.4
