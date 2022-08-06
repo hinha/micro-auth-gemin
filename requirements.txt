@@ -1,4 +1,4 @@
-sanic==18.12.0
+sanic==20.12.7
 gino==0.8.3
 phonenumbers==8.10.19
 passlib==1.7.1
